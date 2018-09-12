@@ -1,0 +1,144 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    color: #333333;
+    font-size: 28px;
+}
+body{
+    text-align: center;
+}
+h2{
+    font-size: 50px;
+    margin: 28px 0 30px;
+}
+a:link, a:hover{
+    text-decoration: none;
+}
+.whiteBg{
+    background: url("../img/White_Background.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #FFFFFF;
+    color: #333333;
+}
+.blueBg{
+    background: url("../img/Blue_Background.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #21a7e0;
+    color: #FFFFFF;
+}
+.greenBg{
+    background: url("../img/Green_Background.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #21a7e0;
+    color: #FFFFFF;
+}
+.yellowBg{
+    background: url("../img/Yellow_Background.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #21a7e0;
+    color: #FFFFFF;
+}
+.redBg{
+    background: url("../img/Red_Background.png");
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-color: #e4002b;
+    color: #FFFFFF;
+}
+.docPath{
+    margin-top: 40px;
+}
+.docPath img{
+    margin-bottom: 20px;
+}
+.blueText{
+    color: #21a7e0;
+}
+.greenText{
+    color: #00c389;
+}
+.yellowText{
+    color: #ffb549;
+}
+.selectMoreBtn{
+    margin: 80px 0 60px;
+}
+#docPage h2, #docPage p, #thanksPage h2, #thanksPage h3, #thanksPage p{
+    color: #FFFFFF;
+}
+.btn{
+    font-size: 28px;
+}
+.subDocsBtn{
+    position: fixed;
+    bottom: 10px;
+    margin: 10px auto;
+    width: 96%;
+}
+.hidden{
+	display:none;
+}
+.container-fluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.loadingIcon{
+    margin: 160px auto;
+}
+.spinner {
+    margin: 100px auto;
+    width: 50px;
+    height: 40px;
+    text-align: center;
+    font-size: 10px;
+}
+
+.spinner > div {
+    background-color: #333;
+    height: 100%;
+    width: 6px;
+    display: inline-block;
+
+    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+    -webkit-animation-delay: -1.1s;
+    animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+    -webkit-animation-delay: -0.9s;
+    animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+    -webkit-animation-delay: -0.8s;
+    animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+    0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+    20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+    0%, 40%, 100% {
+        transform: scaleY(0.4);
+        -webkit-transform: scaleY(0.4);
+    }  20% {
+           transform: scaleY(1.0);
+           -webkit-transform: scaleY(1.0);
+       }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Doc Library</title>
+
+    <link href="dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="dist/css/default.css" rel="stylesheet">
+    <script type="text/javascript" src="config.js"></script>
+	<link rel="stylesheet" href="../noodlelive-offline-swipe/dist/css/default.css">
+</head>
+
+<body class="whiteBg">
+	<div class="container-fluid">
+
+		<div class="alert alert-warning" id="alertMessage"></div>
+
+		<div class="hidden" id="loadingPage">
+			<div class="row loadingdiv">
+				<div class="col-sm-12 loadingIcon">
+					<div class="spinner">
+						<div class="rect1"></div>
+						<div class="rect2"></div>
+						<div class="rect3"></div>
+						<div class="rect4"></div>
+						<div class="rect5"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="hidden" id="swipePage">
+			<div class="row">
+				<div class="col-md-1">&nbsp;</div>
+				<div class="col-md-10">
+					<h2>Welcome!</h2>
+					<p>Please swipe your badge below</p>
+				</div>
+				<div class="col-md-1">&nbsp;</div>
+			</div>
+		</div>
+
+		<div class="hidden" id="homePage">
+			<div class="row">
+				<div class="col-md-1">&nbsp;</div>
+				<div class="col-md-10">
+					<h2>Welcome!</h2>
+					<p>Please select conference stream for document download</p>
+					<div class="docPath">
+						<div class="row">
+							<div class="col-sm-4">
+								<a id="policySelection" class="optionSelect">
+									<p><img src="dist/img/LeftArtboard.png" alt="" /></p>
+									<p class="blueText">Policy</p>
+									<p>Quayside 1</p>
+								</a>
+							</div>
+							<div class="col-sm-4">
+								<a id="topicalSelection" class="optionSelect">
+									<p><img src="dist/img/MiddleArtboard.png" alt="" /></p>
+									<p class="greenText">Topical</p>
+									<p>Quayside 2</p>
+								</a>
+							</div>
+							<div class="col-sm-4">
+								<a id="practicalSelection" class="optionSelect">
+									<p><img src="dist/img/RightArtboard.png" alt="" /></p>
+									<p class="yellowText">Practical</p>
+									<p>Quayside 3</p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-1">&nbsp;</div>
+			</div>
+		</div>
+
+		<div class="hidden" id="docPage">
+			<div class="row">
+				<div class="col-md-1">&nbsp;</div>
+				<div class="col-md-10">
+					<h2 class="pageTitle">DOCUMENT SHARE</h2>
+					<p>Please select conference stream for document download</p>
+				</div>
+				<div class="col-md-1">&nbsp;</div>
+			</div>
+			<div class="row">
+				<div class="col-md-1">&nbsp;</div>
+				<div class="col-md-10">
+					<div class="form-group">
+						<table width="100%" id="documentList">
+							<tbody>
+							</tbody>
+						</table>
+					</div>
+					<div class="subDocsBtn">
+						<button id="sendDocs" class="btn btn-danger btn-lg">Submit</button>
+					</div>
+				</div>
+				<div class="col-md-1">&nbsp;</div>
+	    	</div>
+	    </div>
+
+		<div class="hidden" id="successPage">
+			<div class="row">
+				<div class="col-md-1">&nbsp;</div>
+				<div class="col-md-10">
+					<h2>Success!</h2>
+					<p>The selected material has been sent to you</p>
+					<div class="selectMoreBtn">
+						<button id="selectMore" class="btn btn-danger btn-lg">Select more</button>
+					</div>
+					<div class="selectDoneBtn">
+						<button id="selectDone" class="btn btn-danger btn-lg">Done</button>
+					</div>
+				</div>
+				<div class="col-md-1">&nbsp;</div>
+			</div>
+		</div>
+
+		<div class="hidden" id="thanksPage">
+			<div class="row">
+				<div class="col-md-1">&nbsp;</div>
+				<div class="col-md-10">
+					<h2>Thanks</h2>
+					<h3>[NAME]!</h3>
+					<p>We hope you enjoy the day</p>
+				</div>
+				<div class="col-md-1">&nbsp;</div>
+			</div>
+		</div>
+
+	</div>
+
+    <script type="text/javascript" src="dist/js/jquery.min.js"></script>
+    <script type="text/javascript" src="dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="dist/js/custom.js"></script>
+</body>
+</html>
