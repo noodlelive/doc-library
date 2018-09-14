@@ -90,6 +90,20 @@ a:link, a:hover{
 .loadingIcon{
     margin: 160px auto;
 }
+.listScrollable{
+    overflow-y: scroll;
+    height:350px;
+    text-align: left;
+    color: #FFFFFF;
+}
+.answerOptions{
+    color: #FFFFFF;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+.radioBtn{
+    padding-right:20px;
+}
 .spinner {
     margin: 100px auto;
     width: 50px;

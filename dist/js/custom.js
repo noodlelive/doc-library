@@ -4,6 +4,8 @@ if (window.location.hostname == 'doclibrary.sdev') {
     var postURL = 'https://flashboard.noodlelive.com/';
 }
 var auth = '';
+var usersName = '';
+var docData = {};
 
 var leadId;
 
@@ -18,11 +20,12 @@ function tryTag(){
     }
     if (tagId.length > 0) {
         $.ajax({
-            url: postURL + "api/v2/swipeapp/getuser",
+            url: postURL + "api/v2/swipeapp/getuserwithfolderdocs",
             type: 'post',
             data: {
                 event_id: config.event_id,
-                tag: tagId
+                tag: tagId,
+                folder: config.folderIds
             },
             cache: false,
             headers: {
@@ -31,19 +34,9 @@ function tryTag(){
         })
         .success(function (returndata) {
             if (returndata.data) {
-                var pageContent = {};
-                returndata.data['full_name'] = returndata.data['first_name'] + ' ' + returndata.data['last_name'];
-                if (field1 && returndata.data[field1]) {
-                    pageContent['name'] = escapeHtml(returndata.data[field1]);
-                }
-                if (field2 && returndata.data[field2]) {
-                    if (returndata.data[field2] != null) pageContent['lastText'] = escapeHtml(returndata.data[field2]);
-                }
-                if (textThankYou != '') pageContent['lastText'] = textThankYou;
+                usersName = returndata.data['first_name'] + ' ' + returndata.data['last_name'];
+                docData = returndata.docs;
                 resetHomeView();
-                setTimeout(function () {
-                    swipePage();
-                }, lastPageTimeout);
             } else {
                 showError("Card not recognised");
                 swipePage();
@@ -81,6 +74,7 @@ function showPolicyDocs(){
     changeView('loadingPage');
     $("body").removeClass();
     $("body").addClass('blueBg');
+    setDocList(0);
     $('#docPage .pageTitle').html('Policy');
     changeView('docPage');
 }
@@ -89,6 +83,7 @@ function showTopicalDocs(){
     changeView('loadingPage');
     $("body").removeClass();
     $("body").addClass('greenBg');
+    setDocList(1);
     $('#docPage .pageTitle').html('Topical');
     changeView('docPage');
 }
@@ -97,6 +92,7 @@ function showPracticalDocs(){
     changeView('loadingPage');
     $("body").removeClass();
     $("body").addClass('yellowBg');
+    setDocList(2);
     $('#docPage .pageTitle').html('Practical');
     changeView('docPage');
 }
@@ -104,94 +100,63 @@ function showPracticalDocs(){
 function showThanksPage(){
     $("body").removeClass();
     $("body").addClass('redBg');
+    $('#usersName').html(usersName);
     changeView('thanksPage');
     setTimeout(function(){
-        resetHomeView();
+        swipePage();
     }, 3000);
 }
 
-/*function sendLead(){
-	if (validateForm() == true){
-		changeView('loadingPage');
-	    var user_event_id = $('#attendeeList').val();
-	    var email = $('#inputEmail').val();
-	    var name = $('#inputName').val();
-	    var company = $('#inputCompany').val();
-	    var position = $('#inputPosition').val();
-		$.post( postURL+"lead/"+config.event_key+"/store-lead", { user_event_id: user_event_id, email: email, name: name, company: company, position: position })
-			.done(function(data) {
-				leadId = data.lead.id;
-				$('#documentList tbody').empty();
-				$('#emailBody').val(config.emailBody);
-				$.each(data.documents, function (key,documentChoice){
-					var printDocName = documentChoice.title.replace('.'+documentChoice.document,'')
-					$('#documentList > tbody').append('<tr><td>'+printDocName+'</td><td><input type="checkbox" name="document[]" value="'+documentChoice.id+'" /></td></tr>');
-				});
-				changeView('docPage');
-			})
-			.fail(function(xhr, status) {
-	    		changeView('homePage');
-				showError("Could not send to the server");
-			});
-	} else {
-		changeView('homePage');
-		if($("#homeAlert").length == 0) {
-			$('#homeWarningArea').append('<div class="alert alert-danger fade in" id="homeAlert">Please complete all fields.</div>');
-		}
-	}
-}*/
+function setDocList(folderKey){
+    var docsHtml = '';
+    if (docData[config.folderIds[folderKey]]) {
+        $.each(docData[config.folderIds[folderKey]], function (key, docOption) {
+            docsHtml += '<div class="row answerOptions mainColour" onclick="selectCheck(' + key + ')" id="radioOption_' + key + '"><span class="radioBtn"><img data-attr="' + key + '" src="dist/img/ArrowOff.png" alt="" /></span>' + docOption + '</div>';
+        });
+    }
+    $('#docList').html(docsHtml);
+}
+
+function selectCheck(selectedId){
+    selectedAnswer = selectedId;
+    if ($('#radioOption_'+selectedId).find('img').attr('src') == 'dist/img/ArrowOn.png'){
+        $('#radioOption_'+selectedId).find('img').attr('src','dist/img/ArrowOff.png');
+    } else {
+        $('#radioOption_'+selectedId).find('img').attr('src','dist/img/ArrowOn.png');
+    }
+}
 
 function sendDocuments(){
     loadingPage();
-    $("body").removeClass();
-    $("body").addClass('whiteBg');
-    changeView('successPage');
-
-
-
-    // var user_event_id = $('#attendeeList').val();
-    // var docs = $('input[type="checkbox"][name="document\\[\\]"]:checked').map(function() { return this.value; }).get();
-	// var emailBody = $('#emailBody').val();
-	// $.post( postURL+"lead/"+config.event_key+"/store-lead-document", { user_event_id: user_event_id, lead_id: leadId, docs: docs, email_subject: config.emailSubject, email_body: emailBody })
-	// 	.done(function(data) {
-	// 		$('#setEmail').html($('#inputEmail').val());
-	// 		var docNames = $('input[type="checkbox"][name="document\\[\\]"]:checked').map(function() { return $(this).parent().parent().children('td:first').text(); }).get();
-	// 		if (docNames.length == 0){
-	// 			$('#setDocuments').html('None selected');
-	// 		} else {
-	// 			$('#setDocuments').html('');
-	// 			$.each(docNames, function (key,documentName){
-    	// 			$('#setDocuments').append(documentName+'<br />');
-    	// 		});
-	// 		}
-	// 		changeView('thanksPage');
-	// 	})
-	// 	.fail(function(xhr, status) {
-	// 		showError("Could not send to the server");
-	// 	});
+    var docs = $('.listScrollable img').map(function() {
+        if ($(this).attr('src') == 'dist/img/ArrowOn.png'){
+            return $(this).attr('data-attr');
+        }
+    }).get();
+    var tagId = '';
+    if ($.urlParam('tag') != null){
+        tagId = $.urlParam('tag');
+    }
+    if (docs.length != 0) {
+        $.post(postURL + "api/swipeapp/documents/" + config.event_id + "/" + config.virtual_reader_id + "/send-docs", {
+            tag: tagId,
+            docs: docs
+        })
+            .done(function (data) {
+                $("body").removeClass();
+                $("body").addClass('whiteBg');
+                changeView('successPage');
+            })
+            .fail(function (xhr, status) {
+                swipePage();
+                showError("Could not reach the server.");
+            });
+    } else {
+        $("body").removeClass();
+        $("body").addClass('whiteBg');
+        changeView('successPage');
+    }
 }
-
-/*function setAttendees(){
-	$.post( postURL+"event-data/"+config.event_key+"/attendee-list", {})
-		.done(function(data) {
-			var defaultUser = ''
-			if ($.urlParam('user') != null){
-				defaultUser = $.urlParam('user');
-			}
-			data.forEach( function(data) {
-				$('#attendeeList').append($("<option/>", {
-			        value: data.id,
-			        text: data.name+" ("+data.company+")"
-			    }));
-			    if (data.uniquekey == defaultUser){
-			    	$('select option[value="'+data.id+'"]').attr("selected",true);
-			    }
-	        });
-		})
-		.fail(function(xhr, status) {
-			showError("A problem has occured");
-		});
-}*/
 
 function showError(error){
 	$('#alertMessage').html("");
