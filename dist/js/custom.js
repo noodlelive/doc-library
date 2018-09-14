@@ -16,7 +16,7 @@ function tryTag(){
         tagId = $.urlParam('tag');
     }
     if (auth.length == 0) {
-        auth = "Basic "+btoa("00-00-00-00-00-00:456");
+        auth = "Basic "+btoa(config.virtual_reader_id+":456");
     }
     if (tagId.length > 0) {
         $.ajax({
