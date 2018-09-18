@@ -48,6 +48,22 @@ a:link, a:hover{
     background-color: #e4002b;
     color: #FFFFFF;
 }
+.swipePage h2{
+    padding:110px 0 30px;
+}
+.swipePage p{
+    font-size: 38px;
+}
+.thanksPage h2{
+    padding:110px 0 0px;
+}
+.thanksPage p{
+    font-size: 44px;
+}
+#usersName{
+    font-size: 50px;
+    padding-bottom: 40px;
+}
 .docPath{
     margin-top: 40px;
 }
@@ -56,12 +72,15 @@ a:link, a:hover{
 }
 .blueText{
     color: #21a7e0;
+    font-weight: 600;
 }
 .greenText{
     color: #00c389;
+    font-weight: 600;
 }
 .yellowText{
     color: #ffb549;
+    font-weight: 600;
 }
 .selectMoreBtn{
     margin: 80px 0 60px;

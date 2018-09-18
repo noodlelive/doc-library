@@ -100,7 +100,7 @@ function showPracticalDocs(){
 function showThanksPage(){
     $("body").removeClass();
     $("body").addClass('redBg');
-    $('#usersName').html(usersName);
+    $('#usersName').html(usersName+'!');
     changeView('thanksPage');
     setTimeout(function(){
         swipePage();
