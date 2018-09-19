@@ -111,7 +111,7 @@ function setDocList(folderKey){
     var docsHtml = '';
     if (docData[config.folderIds[folderKey]]) {
         $.each(docData[config.folderIds[folderKey]], function (key, docOption) {
-            docsHtml += '<div class="row answerOptions mainColour" onclick="selectCheck(' + key + ')" id="radioOption_' + key + '"><span class="radioBtn"><img data-attr="' + key + '" src="dist/img/ArrowOff.png" alt="" /></span>' + docOption + '</div>';
+            docsHtml += '<div class="row answerOptions mainColour" onclick="selectCheck(' + key + ')" id="radioOption_' + key + '"><span class="radioBtn"><img data-attr="' + key + '" src="dist/img/ArrowOff.png" alt="" height="40px" /></span>' + docOption + '</div>';
         });
     }
     $('#docList').html(docsHtml);
